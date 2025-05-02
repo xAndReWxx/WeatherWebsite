@@ -1,6 +1,6 @@
 const ApiKey = "81b4ced42e26a72d732b8daedfafd02c";
 
-
+let isFirstSearch = true;
 
 let btn = document.querySelector(".btn-search");
 let searchResult = document.querySelector(".search-result");
@@ -30,11 +30,8 @@ async function getWether(cityName){
     res = await fetch(ApiUrl),
     data = await res.json();
 
-    if(data.cod != 200 )
-    {
-        alert("invalid city name pleas try again .. ");
-    }
-
+    
+   
     console.log(data);
     
     let feels_like = data.main.feels_like,
@@ -55,7 +52,11 @@ async function getWether(cityName){
     year = date.toLocaleDateString("en-US", {year: "numeric"}),
     country = data.sys.country,
     city = data.name;
+    searchResult.classList.remove("hidden");
+    searchResult.classList.add("show");
     
+
+
     searchResult.innerHTML =`
                     <div class="card-1" >
                         <div class="current-weather">
@@ -153,6 +154,9 @@ async function getWether(cityName){
 
     `;
 
+    document.querySelector(".main").classList.add("showMain")
+
+
 }
 
 async function foreCastWether(cityName){
@@ -160,6 +164,13 @@ async function foreCastWether(cityName){
     let res = await fetch(ApiUrl);
     let data = await res.json();
     foreCast.innerHTML = ``;
+
+    foreCast.classList.remove("hidden");
+    foreCast.classList.add("grow");
+
+
+
+
     for (let i =1; i<6; i++){
         let max = data.list[i].temp.max,
         min =  data.list[i].temp.min,
@@ -172,41 +183,48 @@ async function foreCastWether(cityName){
         dayNum = date.toLocaleDateString("en-US", { day: "numeric" }),
         month = date.toLocaleDateString("en-US", {month: "short"});
        
-
-
-
-        foreCast.innerHTML +=`
-
-
-                            <div class="block">
-                        <div class="temp-details">
-                            <div>
-                                <i class="fa-solid fa-temperature-high details-icons"></i>
-                                <p>${max}<span class="orange-hot cc">°</span>C</p>
-                            </div>
-                            <div>
-                                <i class="fa-solid fa-temperature-low details-icons"></i>
-                                <p>${min}<span class="orange-hot cc">°</span>C</p>
-                            </div>
-                        </div>
-                        <p class="temp">${day}<span class="orange-hot cc">°</span>C</p>
-                        <p class="date">${dayNum} ${month}</p>
-                        <p class="day">${dayName}</p>
-                        <div class="forcast-img">
-                            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Forecast Icon" class="forecast-icon" loading="lazy">
-                        </div>
-                    </div>
-
-
+        
+        const block = document.createElement("div");
+        block.className = "block show";
+        block.innerHTML = `
+            <div class="temp-details">
+                <div>
+                    <i class="fa-solid fa-temperature-high details-icons"></i>
+                    <p>${max}<span class="orange-hot cc">°</span>C</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-temperature-low details-icons"></i>
+                    <p>${min}<span class="orange-hot cc">°</span>C</p>
+                </div>
+            </div>
+            <p class="temp">${day}<span class="orange-hot cc">°</span>C</p>
+            <p class="date">${dayNum} ${month}</p>
+            <p class="day">${dayName}</p>
+            <div class="forcast-img">
+                <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Forecast Icon" class="forecast-icon" loading="lazy">
+            </div>
+        `;
 
 
         
-        ` ;
+        if(!isFirstSearch) {
+            foreCast.appendChild(block);
+        } else {
 
-
-
+            setTimeout(() => {
+                foreCast.appendChild(block);
+            }, i * 300);
+        }
 
     }
+
+    if (isFirstSearch) {
+        isFirstSearch = false;
+    }
+
+
+
+  
 
 
     console.log(data);

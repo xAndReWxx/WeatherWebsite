@@ -1,6 +1,13 @@
 /* Start Global Styles */
 @import url("https://fonts.googleapis.com/css2?family=Quando&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap");
 
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
 :root {
     --hot-orange: rgb(216, 122, 0);
     --gray-de: rgba(255, 255, 255, 0.521);
@@ -29,16 +36,6 @@ body {
 }
 
 
-/* video{
-    position: absolute;
-    z-index: -3;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    min-width: 100%;
-    min-height: 100%;
-
-} */
 /* END Global Styles */
 
 /* Start Color Classes */
@@ -92,9 +89,9 @@ body {
 
 /* Start Main Content */
 .main {
-    min-width: 600px;
+    min-width: 750px;
     max-width: 900px;
-    min-height: auto;
+    min-height: fit-content;
     margin: auto;
     padding: 20px;
     padding-top: 15px;
@@ -108,15 +105,13 @@ body {
     justify-content: center;
     align-items: center;
 
+    transition: 3s ease-in-out all linear;
+    
 
 }
 
 
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
+
 
 .main::after, .main::before {
     content: '';
@@ -132,9 +127,6 @@ body {
     border-radius: 30px;
     padding: 2px;
 
-    transition: all 3s ease;
-
-
     animation: 3s spin linear infinite;
 }
 
@@ -144,14 +136,6 @@ body {
     border-radius: 30px;
 }
 
-@keyframes spin{
-    from{
-        --angle:0deg;
-    }
-    to{
-        --angle: 360deg;
-    }
-}
 
 
 /* END Main Content */
@@ -212,7 +196,8 @@ body {
     margin: 10px 0;
     gap: 10px;
     padding: 0 20px;
-
+    transform: scale(0.1);
+    opacity: 0;
 }
 
 .card-1,
@@ -229,6 +214,14 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    transition: 0.6s ease-out;
+}
+
+
+.card-1:hover,
+.card-2:hover,
+.card-3:hover{
+    transform: scale(1.1);
 }
 
 .card-1 hr,
@@ -245,11 +238,7 @@ body {
     width: 80%;
     max-width: 600px;
     margin: 10px auto;
-    padding: 0 20px;
-    
-    
-
-
+    /* padding: 0 20px; */
 }
 
 .block {
@@ -264,19 +253,13 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    transition: 1s ease-out;
+}
 
+.block:hover{
+    transform: scale(10);
 }
 /* END Forecast Blocks */
-
-.hidden{
-    opacity: 0;
-    overflow: 0;
-    margin: 0;
-    padding: 0;
-    max-width: 0;
-    max-height: 0;
-    visibility: hidden;
-}
 
 
 /* Start Card-1 Details */
@@ -699,6 +682,96 @@ body {
     }
 }
 
-
-
 /* END Responsive Media Queries */
+
+
+.hidden {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 0;
+    max-height: 0;
+    visibility: hidden;
+}
+
+.search-result.show {
+    opacity: 1;
+    max-width: 100%;
+    max-height: 100%;
+    visibility: visible;
+    margin: 10px 0;
+    padding: 0 20px;
+    animation: grow 1.5s ease forwards; /* تطبيق الأنيميشن */
+}
+
+.main.showMain{
+    max-width: 750px;
+    animation: growMain 1s ease forwards;
+
+}
+
+.forecast.grow{
+    animation: growForecast 1s ease forwards;
+}
+
+
+@keyframes spin{
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
+
+
+@keyframes growForecast{
+    0%{
+        height: 100px;
+    }
+    100%{
+        height: 650px;
+    }
+}
+
+
+@keyframes growMain{
+    0%{
+        height: 20px;
+    }
+    100%{
+        height: 1000px;
+    }
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.05); /* تكبير زيادة شوية لتأثير bounce */
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes slideIn {
+    0% {
+        transform: translateY(650px);
+        
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.block.show {
+    /* height: auto; */
+    animation: slideIn 0.8s ease forwards;
+}
