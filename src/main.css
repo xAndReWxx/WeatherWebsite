@@ -253,11 +253,11 @@ body {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    transition: 1s ease-out;
+    transition: 0.6s ease-out;
 }
 
 .block:hover{
-    transform: scale(10);
+    transform: scale(1.1);
 }
 /* END Forecast Blocks */
 
@@ -751,7 +751,7 @@ body {
         opacity: 0;
     }
     80% {
-        transform: scale(1.05); /* تكبير زيادة شوية لتأثير bounce */
+        transform: scale(1.03); 
         opacity: 1;
     }
     100% {
@@ -761,7 +761,7 @@ body {
 }
 @keyframes slideIn {
     0% {
-        transform: translateY(650px);
+        transform: translateY(var(--slide-distance));
         
         opacity: 0;
     }
@@ -773,5 +773,7 @@ body {
 
 .block.show {
     /* height: auto; */
-    animation: slideIn 0.8s ease forwards;
+    --slide-distance : 0px;
+    --time: 0s;
+    animation: slideIn var(--time) ease-out forwards;
 }

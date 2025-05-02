@@ -1,6 +1,8 @@
 const ApiKey = "81b4ced42e26a72d732b8daedfafd02c";
 
 let isFirstSearch = true;
+let set_des = 500;
+let time_animation = 0.6;
 
 let btn = document.querySelector(".btn-search");
 let searchResult = document.querySelector(".search-result");
@@ -30,7 +32,7 @@ async function getWether(cityName){
     res = await fetch(ApiUrl),
     data = await res.json();
 
-    
+
    
     console.log(data);
     
@@ -187,51 +189,49 @@ async function foreCastWether(cityName){
         const block = document.createElement("div");
         block.className = "block show";
         block.innerHTML = `
-            <div class="temp-details">
-                <div>
-                    <i class="fa-solid fa-temperature-high details-icons"></i>
-                    <p>${max}<span class="orange-hot cc">°</span>C</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-temperature-low details-icons"></i>
-                    <p>${min}<span class="orange-hot cc">°</span>C</p>
-                </div>
+        <div class="temp-details">
+            <div>
+                <i class="fa-solid fa-temperature-high details-icons"></i>
+                <p>${max}<span class="orange-hot cc">°</span>C</p>
             </div>
+            <div>
+                <i class="fa-solid fa-temperature-low details-icons"></i>
+                <p>${min}<span class="orange-hot cc">°</span>C</p>
+            </div>
+        </div>
             <p class="temp">${day}<span class="orange-hot cc">°</span>C</p>
             <p class="date">${dayNum} ${month}</p>
             <p class="day">${dayName}</p>
             <div class="forcast-img">
                 <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Forecast Icon" class="forecast-icon" loading="lazy">
             </div>
-        `;
+            `;
+            
+            
 
-
-        
-        if(!isFirstSearch) {
-            foreCast.appendChild(block);
-        } else {
-
-            setTimeout(() => {
+            if(!isFirstSearch) {
                 foreCast.appendChild(block);
-            }, i * 300);
+            } else {
+                
+                block.style.setProperty('--slide-distance', `${set_des}px`);
+                block.style.setProperty('--time', `${time_animation}s`);
+                setTimeout(() => {
+                    foreCast.appendChild(block);
+                }, i * 300);
+                set_des -= 100;
+                time_animation += 0.1;
+            }   
         }
+        
 
-    }
-
-    if (isFirstSearch) {
-        isFirstSearch = false;
-    }
-
-
-
+        if (isFirstSearch) {
+            isFirstSearch = false;
+            // block.style.setProperty('--animation-play-state', 'paused');
+            set_des = 0;
+            time_animation = 0;
+        }
+        
   
-
-
     console.log(data);
-
-
-
-
-
 
 }
