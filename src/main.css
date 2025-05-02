@@ -1,0 +1,704 @@
+/* Start Global Styles */
+@import url("https://fonts.googleapis.com/css2?family=Quando&family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap");
+
+:root {
+    --hot-orange: rgb(216, 122, 0);
+    --gray-de: rgba(255, 255, 255, 0.521);
+}
+
+* {
+    font-family: "Winky Rough", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    color: rgb(199, 199, 199);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+/* video{
+    position: absolute;
+    z-index: -3;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    min-width: 100%;
+    min-height: 100%;
+
+} */
+/* END Global Styles */
+
+/* Start Color Classes */
+.orange-hot {
+    color: var(--hot-orange);
+}
+/* END Color Classes */
+
+/* Start Container */
+.con {
+    width: 100%;
+    min-height: 100vh;
+    z-index: 1;
+    background-color: rgb(6, 0, 20);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* END Container */
+
+/* Start Header */
+.header {
+    display: flex;
+    width: 100%;
+    min-height: 10%;
+    padding: 5px 5%;
+    background: linear-gradient(to top, rgba(43, 52, 66, 0.589), rgb(15, 6, 13));
+    border-radius: 0 0 3px 3px;
+    backdrop-filter: blur(30px);
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 3px rgba(255, 255, 255, 0.349);
+}
+/* END Header */
+
+/* Start Logo Bar */
+.logo {
+    margin-left: 20px;
+    border-radius: 60px;
+    height: 50px;
+}
+
+.logoImg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+/* END Logo Bar */
+
+/* Start Main Content */
+.main {
+    min-width: 600px;
+    max-width: 900px;
+    min-height: auto;
+    margin: auto;
+    padding: 20px;
+    padding-top: 15px;
+    border-radius: 30px;
+    background: linear-gradient(to top, rgb(20, 18, 18), rgb(25, 0, 46));
+    /* backdrop-filter: blur(20px); */
+    margin:40px 0 ;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.main::after, .main::before {
+    content: '';
+    box-sizing: content-box;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 0%, rgb(149, 3, 233));
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 30px;
+    padding: 2px;
+
+    transition: all 3s ease;
+
+
+    animation: 3s spin linear infinite;
+}
+
+.main::before {
+    filter: blur(30px); 
+    opacity: 0.6;
+    border-radius: 30px;
+}
+
+@keyframes spin{
+    from{
+        --angle:0deg;
+    }
+    to{
+        --angle: 360deg;
+    }
+}
+
+
+/* END Main Content */
+
+/* Start Search Bar */
+.search {
+    position: relative;
+    width: 80%;
+    max-width: 500px;
+    margin: 10px auto;
+}
+
+.cityInput {
+    display: flex;
+    width: 100%;
+    padding: 12px 35px 12px 15px;
+    border-radius: 99px;
+    border: 3px solid transparent;
+    background: rgba(94, 83, 83, 0.445);
+    outline: none;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: 0.25s border;
+    font-size: 0.9rem;
+    margin: 20px auto;
+}
+
+.cityInput:focus {
+    border: 3px solid rgba(255, 255, 255, 0.377);
+}
+
+.cityInput::placeholder {
+    color: rgba(255, 255, 255, 0.795);
+    font-size: 0.9rem;
+}
+
+.btn-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 6px;
+}
+/* END Search Bar */
+
+/* Start Search Result Boxes */
+.search-result {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px 0;
+    gap: 10px;
+    padding: 0 20px;
+
+}
+
+.card-1,
+.card-2,
+.card-3 {
+    background: linear-gradient(to top,rgba(37, 37, 37, 0.151), rgba(97, 97, 97, 0.212) );
+    backdrop-filter: blur(10px);
+    width: 30%;
+    min-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.89);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card-1 hr,
+.card-2 hr,
+.card-3 hr {
+    margin: 3px 0;
+    color: rgba(255, 252, 252, 0.247);
+    opacity: 1;
+}
+/* END Search Result Boxes */
+
+/* Start Forecast Blocks */
+.forecast {
+    width: 80%;
+    max-width: 600px;
+    margin: 10px auto;
+    padding: 0 20px;
+    
+    
+
+
+}
+
+.block {
+    background: linear-gradient(to top,rgba(37, 37, 37, 0.151), rgba(97, 97, 97, 0.212) );
+    backdrop-filter: blur(30px);
+    width: 100%;
+    max-height: 90px;
+    border-radius: 10px;
+    margin: 30px auto;
+    color: white;
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+/* END Forecast Blocks */
+
+.hidden{
+    opacity: 0;
+    overflow: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 0;
+    max-height: 0;
+    visibility: hidden;
+}
+
+
+/* Start Card-1 Details */
+.card-1{
+    padding: 0 20px;
+}
+.current-weather {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+
+.details {
+    width: fit-content;
+}
+
+.details :first-child {
+    font-weight: 500;
+    margin-bottom: 2px;
+    font-size: 0.9rem;
+}
+
+.details h2 {
+    color: rgba(255, 255, 255, 0.863);
+    font-weight: 500;
+    font-size: 2rem;
+    padding-left: 10px;
+    margin: 15px 0;
+}
+
+.details span {
+    color: var(--hot-orange);
+}
+
+.details p:last-child {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.weather-icon {
+    margin-left: auto;
+    width: 35%;
+    height: fit-content;
+    display: flex;
+}
+
+.weather-icon img {
+    width: 100%;
+}
+
+.card-footerr {
+    color: var(--gray-de);
+    width: 100%;
+    max-height: fit-content;
+    padding-top: 3px;
+    margin-bottom: 0;
+}
+
+.card-footerr p {
+    margin-bottom: 2px;
+    font-size: 0.8rem;
+}
+
+.card-footerr :first-child {
+    margin-bottom: 2px;
+}
+
+.card-footerr i {
+    color: var(--hot-orange);
+    margin-right: 6px;
+    font-size: 0.9rem;
+}
+
+.card-footerr .fa-calendar {
+    margin-right: 8px;
+}
+/* END Card-1 Details */
+
+/* Start Card-2 Details */
+.card-2 hr {
+    margin: 2px 0;
+}
+
+.feel-like,
+.hi,
+.lo,
+.humidity {
+    padding: 3px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.feel-like p,
+.hi p,
+.lo p,
+.humidity p {
+    margin-bottom: 0;
+    font-weight: 500;
+}
+
+.feel-like div,
+.hi div,
+.lo div,
+.humidity div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.feel-like > p:first-child,
+.hi > p:first-child,
+.lo > p:first-child,
+.humidity > p:first-child {
+    font-size: 0.8rem;
+    color: var(--gray-de);
+}
+
+.cc {
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.details-icons {
+    color: var(--hot-orange);
+    font-size: 1rem;
+}
+/* END Card-2 Details */
+
+/* Start Card-3 Details */
+.air-details p,
+.air-speed p,
+.pressure p,
+.visibility p {
+    margin-bottom: 0;
+}
+
+.air-details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 3px;
+}
+
+.air-details p {
+    font-size: 1.2rem;
+}
+
+.air-details i {
+    font-size: 1.2rem;
+}
+
+.air-details div p,
+.air-speed div p,
+.pressure div p,
+.visibility div p {
+    font-size: 1rem;
+    color: var(--gray-de);
+    margin: 3px 0;
+}
+
+.air-speed,
+.pressure,
+.visibility {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.air-speed > p,
+.pressure > p,
+.visibility > p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.air-icons {
+    font-size: 1rem;
+    margin-left: 8px;
+}
+
+.air-block-details {
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+/* END Card-3 Details */
+
+/* Start Forecast Details */
+.block img {
+    width: fit-content;
+    max-width: 40px;
+}
+
+.block .temp {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+
+.block .temp span {
+    font-size: 1.8rem;
+}
+
+.block div {
+    width: 20%;
+}
+
+.block div p {
+    margin: 3px 0;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.block div p span {
+    font-size: 1.2rem;
+}
+
+.block div div {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 3px;
+}
+
+.block .day,
+.block .date {
+    color: var(--gray-de);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.block .forcast-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        width: fit-content;
+        max-width: max-content;
+        font-size: 100%;
+    }
+
+}
+
+/* END Forecast Details */
+
+
+
+
+/* Start Responsive Media Queries */
+@media (max-width: 1024px) {
+    .main {
+        width: 80%;
+    }
+
+    .search {
+        width: 90%;
+    }
+
+    .forecast {
+        width: 90%;
+    }
+
+    .card-1,
+    .card-2,
+    .card-3 {
+        width: 32%;
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 5px 3%;
+    }
+
+    .logo {
+        margin-left: 15px;
+        height: 40px;
+    }
+
+    .main {
+        width: 95%;
+        margin: 15px auto;
+    }
+
+    .search {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .search-result {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+
+    .card-1,
+    .card-2,
+    .card-3 {
+        width: 90%;
+        max-width: 400px;
+        padding: 10px;
+        margin-bottom: 10px;
+        max-height: auto;
+    }
+
+    .forecast {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .block {
+        flex-direction: column;
+        text-align: center;
+        max-width: 400px;
+        max-height: fit-content;
+    }
+
+    .block div {
+        width: 100%;
+    }
+    .block div div{
+        justify-content: center;
+        p{
+            margin-left: 10px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 5px 2%;
+    }
+
+    .logo {
+        margin: 8px 0;
+        height: 35px;
+    }
+
+    .main {
+        width: 98%;
+        margin: 10px auto;
+    }
+
+    .search {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .search-result {
+        margin: 8px 0;
+    }
+
+    .card-1,
+    .card-2,
+    .card-3 {
+        width: 95%;
+    }
+
+    .forecast {
+        width: 95%;
+        margin: 10px auto;
+    }
+
+    .block {
+        flex-direction: column;
+        text-align: center;
+        max-height: fit-content;
+    }
+
+    .block div {
+        width: 100%;
+    }
+
+    .block .temp {
+        font-size: 1.3rem;
+    }
+
+    .block .temp span {
+        font-size: 1.6rem;
+    }
+
+    .block div p {
+        font-size: 0.9rem;
+    }
+
+    .block div p span {
+        font-size: 1rem;
+    }
+
+    .block .day,
+    .block .date {
+        font-size: 1rem;
+    }
+
+    .air-details p {
+        font-size: 1.1rem;
+    }
+
+    .air-details div p,
+    .air-speed div p,
+    .pressure div p,
+    .visibility div p {
+        font-size: 0.9rem;
+    }
+
+    .air-speed > p,
+    .pressure > p,
+    .visibility > p {
+        font-size: 1rem;
+    }
+}
+
+
+
+/* END Responsive Media Queries */
