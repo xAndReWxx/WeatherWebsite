@@ -204,7 +204,7 @@ async function foreCastWether(cityName){
             <p class="day">${dayName}</p>
             <div class="forcast-img">
                 <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="Weather Forecast Icon" class="forecast-icon" loading="lazy">
-            </div>
+        </div>
             `;
             
             
