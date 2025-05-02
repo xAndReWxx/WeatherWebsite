@@ -203,7 +203,7 @@ body {
 .card-1,
 .card-2,
 .card-3 {
-    background: linear-gradient(to top,rgba(37, 37, 37, 0.151), rgba(97, 97, 97, 0.212) );
+    background: linear-gradient(to top, rgb(255 255 255 / 9%), rgba(97, 97, 97, 0.212));
     backdrop-filter: blur(10px);
     width: 30%;
     min-width: 200px;
@@ -905,7 +905,7 @@ body {
 }
 
 .toast.error {
-    background: rgba(56, 56, 56, 0.575);
+    background: rgba(56, 56, 56, 0.856);
     --color-status: #ffffffcb;
 }
 
