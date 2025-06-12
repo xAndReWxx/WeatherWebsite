@@ -191,7 +191,30 @@ async function getWether(cityName) {
         </div>
     `;
 
+
+
+
     document.querySelector(".main").classList.add("showMain");
+
+
+    
+    function getVideoByTemp(temp) {
+        if (temp >= 35) return "../Video/very-hot.mp4";
+        if (temp >= 25) return "../Video/hot.mp4";
+        if (temp >= 15) return "../Video/cloudy.mp4";
+        return "../Video/cold.mp4";
+      }
+
+
+
+
+
+
+      const videoSrc = getVideoByTemp(temp);
+      document.getElementById("video-source").src = videoSrc;
+      document.getElementById("bg-video").load();
+
+      
 }
 
 async function foreCastWether(cityName) {
